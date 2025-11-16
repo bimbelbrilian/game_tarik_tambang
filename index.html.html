@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 Tarik Tambang Matematika</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Tarik Tambang Matematika</h1>
+            <p>Asah kemampuan matematika sambil bersenang-senang!</p>
+        </header>
+
+        <!-- ==================== -->
+        <!-- MAIN MENU SECTION -->
+        <!-- ==================== -->
+        <div id="main-menu" class="modal" style="display: flex;">
+            <div class="modal-content">
+                <h2>Pilih Jenis Operasi</h2>
+                <div class="mode-grid">
+                    <!-- MENU 1: PENJUMLAHAN -->
+                    <div class="mode-card" data-mode="addition">
+                        <div class="mode-icon">+</div>
+                        <h3>Penjumlahan</h3>
+                    </div>
+                    
+                    <!-- MENU 2: PENJUMLAHAN 3 BILANGAN -->
+                    <div class="mode-card" data-mode="addition3">
+                        <div class="mode-icon">++</div>
+                        <h3>Penjumlahan 3 Bilangan</h3>
+                    </div>
+                    
+                    <!-- MENU 3: PENGURANGAN -->
+                    <div class="mode-card" data-mode="subtraction">
+                        <div class="mode-icon">−</div>
+                        <h3>Pengurangan</h3>
+                    </div>
+                    
+                    <!-- MENU 4: PENGURANGAN 3 BILANGAN -->
+                    <div class="mode-card" data-mode="subtraction3">
+                        <div class="mode-icon">--</div>
+                        <h3>Pengurangan 3 Bilangan</h3>
+                    </div>
+                    
+                    <!-- MENU 5: PENJUMLAHAN & PENGURANGAN -->
+                    <div class="mode-card" data-mode="addition-subtraction">
+                        <div class="mode-icon">±</div>
+                        <h3>Penjumlahan & Pengurangan</h3>
+                    </div>
+                    
+                    <!-- MENU 6: PENJUMLAHAN & PENGURANGAN 3 BIL -->
+                    <div class="mode-card" data-mode="addition-subtraction3">
+                        <div class="mode-icon">±±</div>
+                        <h3>Penjumlahan & Pengurangan 3 Bil</h3>
+                    </div>
+                    
+                    <!-- MENU 7: PERKALIAN -->
+                    <div class="mode-card" data-mode="multiplication">
+                        <div class="mode-icon">×</div>
+                        <h3>Perkalian</h3>
+                    </div>
+                    
+                    <!-- MENU 8: PEMBAGIAN -->
+                    <div class="mode-card" data-mode="division">
+                        <div class="mode-icon">÷</div>
+                        <h3>Pembagian</h3>
+                    </div>
+                    
+                    <!-- MENU 9: PERKALIAN & PEMBAGIAN -->
+                    <div class="mode-card" data-mode="multiplication-division">
+                        <div class="mode-icon">×÷</div>
+                        <h3>Perkalian & Pembagian</h3>
+                    </div>
+                    
+                    <!-- MENU 10: SEMUA OPERASI -->
+                    <div class="mode-card" data-mode="all-operations">
+                        <div class="mode-icon">±×÷</div>
+                        <h3>Semua Operasi</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== -->
+        <!-- LEVEL SELECTION SECTION -->
+        <!-- ==================== -->
+        <div id="level-menu" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h2 id="level-title">Pilih Level Kesulitan</h2>
+                <p id="level-description">Pilih level 1-10 untuk menentukan tingkat kesulitan soal</p>
+                
+                <div class="level-grid">
+                    <!-- Level 1-10 akan di-generate oleh JavaScript -->
+                </div>
+                
+                <button class="btn btn-back" onclick="showMainMenu()">
+                    <i class="fas fa-arrow-left"></i> Kembali
+                </button>
+            </div>
+        </div>
+
+        <!-- ==================== -->
+        <!-- COUNTDOWN SECTION -->
+        <!-- ==================== -->
+        <div id="countdown-overlay" class="modal" style="display: none;">
+            <div id="countdown">3</div>
+        </div>
+
+        <!-- ==================== -->
+        <!-- GAME CONTAINER SECTION -->
+        <!-- ==================== -->
+        <div id="game-container">
+            <div class="game-area">
+                <!-- PLAYER 1 PANEL -->
+                <div class="player-panel">
+                    <div class="player-header">Player 1</div>
+                    <div class="problem-display" id="problem-p1">5 + 3 = ?</div>
+                    <div class="answer-display" id="answer-p1"></div>
+                    <div class="keypad" id="keypad-p1">
+                        <!-- Keypad akan di-generate oleh JavaScript -->
+                    </div>
+                </div>
+
+                <!-- TUG OF WAR ARENA -->
+                <div class="tug-of-war-arena">
+                    <div class="center-line"></div>
+                    <div class="rope" id="rope">
+                        <div class="marker"></div>
+                    </div>
+                    <div class="character player1">P1</div>
+                    <div class="character player2">P2</div>
+                </div>
+
+                <!-- PLAYER 2 PANEL -->
+                <div class="player-panel">
+                    <div class="player-header player2">Player 2</div>
+                    <div class="problem-display" id="problem-p2">8 - 2 = ?</div>
+                    <div class="answer-display" id="answer-p2"></div>
+                    <div class="keypad" id="keypad-p2">
+                        <!-- Keypad akan di-generate oleh JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- GAME CONTROLS -->
+            <div class="game-controls">
+                <div id="status-message">Jawab soal untuk menarik tali!</div>
+                <div class="score-display">
+                    <span>P1: <span id="score-p1">0</span></span>
+                    <span>P2: <span id="score-p2">0</span></span>
+                </div>
+                <button class="btn" onclick="resetGame()">Main Lagi</button>
+                <button class="btn" onclick="showMainMenu()">Menu Utama</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== -->
+    <!-- FOOTER SECTION -->
+    <!-- ==================== -->
+    <footer>
+        <p>Dibuat dengan ❤️ untuk pendidikan matematika</p>
+        <div class="social-links">
+            <a href="https://github.com/yourusername" target="_blank">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+            </a>
+            <a href="#" onclick="shareGame()">
+                <i class="fas fa-share"></i>
+                <span>Bagikan</span>
+            </a>
+        </div>
+    </footer>
+
+    <!-- ==================== -->
+    <!-- JAVASCRIPT FILES -->
+    <!-- ==================== -->
+    <script src="script.js"></script>
+</body>
+</html>
