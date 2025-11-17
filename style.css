@@ -912,7 +912,7 @@ header::before {
 footer {
     background: linear-gradient(135deg, #2c3e50, #34495e);
     color: white;
-    padding: 15px 20px;
+    padding: 10px 20px;
     text-align: center;
     width: 100%;
     margin-top: auto;
@@ -924,7 +924,6 @@ footer {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-top: 10px;
     flex-wrap: wrap;
 }
 
