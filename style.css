@@ -20,6 +20,41 @@ body {
 }
 
 /* ==================== */
+/* FEEDBACK BOX STYLES (Tambahkan ini di style.css) */
+/* ==================== */
+.feedback-box {
+    height: 35px; /* Tinggi kotak */
+    line-height: 35px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    border-radius: 8px; /* Sudut membulat */
+    margin-top: 10px; /* Jarak dari keypad */
+    opacity: 0; /* Sembunyikan secara default */
+    transform: translateY(10px);
+    transition: all 0.2s ease-out; /* Transisi untuk animasi */
+    pointer-events: none; /* Pastikan tidak mengganggu klik di sekitarnya */
+}
+
+/* KELAS AKTIF */
+.feedback-box.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* KELAS WARNA */
+.feedback-box.correct {
+    background: #2ecc71; /* Hijau Dominan */
+    box-shadow: 0 4px 10px rgba(46, 204, 113, 0.4);
+}
+
+.feedback-box.wrong {
+    background: #e74c3c; /* Merah Dominan */
+    box-shadow: 0 4px 10px rgba(231, 76, 60, 0.4);
+}
+
+/* ==================== */
 /* CONTAINER & LAYOUT */
 /* ==================== */
 .container {
@@ -366,7 +401,7 @@ header::before {
     top: 50%;
     width: 90%;
     max-width: 600px;
-    height: 50%;
+    height: 45%;
     transform: translate(-50%, -50%);
     transition: transform 0.3s ease;
     z-index: 2;
@@ -792,11 +827,13 @@ header::before {
 /* COUNTDOWN ANIMATION */
 /* ==================== */
 #countdown {
-    font-size: 5em;
+    /* Mengubah 5em menjadi 15vw agar lebih besar dan responsif */
+    font-size: 15vw; /* ✅ UKURAN FONT DIPERBESAR */ 
     color: white;
     font-weight: bold;
     text-shadow: 0 0 15px rgba(0,0,0,0.5);
-    animation: pulse 1s infinite;
+    /* Menggunakan animasi 'pulse' yang sudah ada */
+    animation: pulse 1s infinite; 
 }
 
 @keyframes pulse {
