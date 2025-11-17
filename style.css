@@ -919,18 +919,6 @@ footer {
     flex-shrink: 0;
 }
 
-.footer-brand {
-    font-size: 1.1em;
-    font-weight: bold;
-    margin-bottom: 8px;
-    color: #f39c12;
-}
-
-.footer-description {
-    font-size: 0.9em;
-    margin-bottom: 10px;
-    opacity: 0.9;
-}
 
 .social-links {
     display: flex;
