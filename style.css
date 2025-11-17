@@ -10,12 +10,15 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
+    
+    /* ✅ Solusi 1: Atur tinggi agar flexbox dapat bekerja */
+    height: 100vh; 
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    
     padding: 5px;
 }
 
@@ -369,16 +372,38 @@ header::before {
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
+/* ✅ REVISI: EFEK KLIK UNTUK TOMBOL ANGKA */
 .keypad button:active {
-    transform: translateY(0);
+    background: #f1c40f; /* Kuning */
+    color: #34495e; /* Hitam */
+    transform: scale(0.95); /* Efek 'tekan' */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) inset; 
 }
 
+/* Tombol Aksi (Konfirmasi) */
 .keypad button.action {
     background: linear-gradient(135deg, #27ae60, #229954);
 }
 
+/* ✅ REVISI: EFEK KLIK UNTUK TOMBOL KONFIRMASI */
+.keypad button.action:active {
+    background: #229954; /* Sedikit lebih gelap */
+    transform: scale(0.95);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) inset;
+    color: white; /* Tetap putih */
+}
+
+/* Tombol Hapus (Clear) */
 .keypad button.clear {
     background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+/* ✅ REVISI: EFEK KLIK UNTUK TOMBOL HAPUS */
+.keypad button.clear:active {
+    background: #c0392b; /* Sedikit lebih gelap */
+    transform: scale(0.95);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) inset;
+    color: white; /* Tetap putih */
 }
 
 /* ==================== */
