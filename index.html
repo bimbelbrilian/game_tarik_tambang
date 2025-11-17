@@ -39,14 +39,18 @@
                             <div class="mode-icon">--</div>
                             <h3>Pengurangan 3 Bilangan</h3>
                         </div>
-                        <div class="mode-card" data-mode="addition-subtraction">
+                        <div class="mode-card" data-mode="addition-or-subtraction">
                             <div class="mode-icon">±</div>
-                            <h3>Penjumlahan & Pengurangan</h3>
+                            <h3>Penjumlahan atau Pengurangan</h3>
                         </div>
-                        <div class="mode-card" data-mode="addition-subtraction3">
+                        <div class="mode-card" data-mode="double-addition-subtraction">
                             <div class="mode-icon">±±</div>
-                            <h3>Penjumlahan & Pengurangan 3 Bil</h3>
+                            <h3>Penjumlahan & Pengurangan Ganda</h3>
                         </div>
+			<div class="mode-card" data-mode="mixed-addition-subtraction">
+   			    <div class="mode-icon">±</div>
+   			    <h3>Campuran Tambah & Kurang</h3>
+			</div>
                         <div class="mode-card" data-mode="multiplication">
                             <div class="mode-icon">×</div>
                             <h3>Perkalian</h3>
@@ -55,14 +59,18 @@
                             <div class="mode-icon">÷</div>
                             <h3>Pembagian</h3>
                         </div>
-                        <div class="mode-card" data-mode="multiplication-division">
+                        <div class="mode-card" data-mode="multiplication-or-division">
                             <div class="mode-icon">×÷</div>
-                            <h3>Perkalian & Pembagian</h3>
+                            <h3>Perkalian atau Pembagian</h3>
                         </div>
                         <div class="mode-card" data-mode="all-operations">
                             <div class="mode-icon">±×÷</div>
                             <h3>Semua Operasi</h3>
                         </div>
+			<div class="mode-card" data-mode="all-mixed-operations">
+   			    <div class="mode-icon">±÷×</div>
+  			    <h3>Campuran Semua Operasi</h3>
+			</div>
                     </div>
                 </div>
             </div>
@@ -115,13 +123,14 @@
             <div class="game-area">
                 <!-- PLAYER 1 PANEL -->
                 <div class="player-panel">
-                    <div class="player-header">Pemain 1</div>
-                    <div class="problem-display" id="problem-p1">5 + 3 = ?</div>
-                    <div class="answer-display" id="answer-p1"></div>
-                    <div class="keypad" id="keypad-p1">
-                        <!-- Keypad akan di-generate oleh JavaScript -->
-                    </div>
-                </div>
+    			<div class="player-header">Pemain 1</div>
+    			<div class="problem-display" id="problem-p1">5 + 3 = ?</div>
+    			<div class="answer-display" id="answer-p1"></div>
+    			<div class="keypad" id="keypad-p1">
+      			 	<!-- Keypad akan di-generate oleh JavaScript -->
+       			 	</div>
+    			<div id="feedback-p1" class="feedback-box"></div>
+		</div>
 
                 <!-- TUG OF WAR ARENA -->
                 <div class="tug-of-war-arena">
@@ -136,13 +145,14 @@
 
                 <!-- PLAYER 2 PANEL -->
                 <div class="player-panel">
-                    <div class="player-header player2">Pemain 2</div>
-                    <div class="problem-display" id="problem-p2">8 - 2 = ?</div>
-                    <div class="answer-display" id="answer-p2"></div>
-                    <div class="keypad" id="keypad-p2">
-                        <!-- Keypad akan di-generate oleh JavaScript -->
-                    </div>
-                </div>
+    			<div class="player-header player2">Pemain 2</div>
+    			<div class="problem-display" id="problem-p2">8 - 2 = ?</div>
+    			<div class="answer-display" id="answer-p2"></div>
+    			<div class="keypad" id="keypad-p2">
+				<!-- Keypad akan di-generate oleh JavaScript -->
+        			</div>
+    			<div id="feedback-p2" class="feedback-box"></div>
+		</div>
             </div>
 
             <!-- GAME CONTROLS -->
@@ -177,6 +187,13 @@
             </a>
         </div>
     </footer>
+
+<audio id="sound-angka" src="sound_memilih_angka.mp3" preload="auto"></audio>
+<audio id="sound-konfirmasi" src="sound_konfirmasi_jawaban.mp3" preload="auto"></audio>
+<audio id="sound-menu-select" src="sound_memilih_menu.mp3" preload="auto"></audio>
+<audio id="sound-main-menu" src="sound_menu_utama.mp3" preload="auto"></audio>
+<audio id="sound-pemenang" src="sound_pemenang.mp3" preload="auto"></audio>
+
 
     <script src="script.js"></script>
 </body>
