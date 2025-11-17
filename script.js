@@ -43,9 +43,9 @@ const elements = {
     keypadP2: document.getElementById('keypad-p2'),
     tugIllustration: document.getElementById('tug-of-war-illustration'),
     statusMessage: document.getElementById('status-message'),
-    scoreP1: document.getElementById('score-p1'),
-    scoreP2: document.getElementById('score-p2'),
-    gameTimer: document.getElementById('game-timer')
+    gameTimer: document.getElementById('game-timer'),
+    arenaScoreP1: document.getElementById('arena-score-p1'),
+    arenaScoreP2: document.getElementById('arena-score-p2')
 };
 
 // ==================== 
@@ -72,12 +72,10 @@ const modeConfigs = {
         title: 'Penjumlahan atau Pengurangan',
         description: 'Gabungan operasi penjumlahan atau pengurangan'
     },
-
     'mixed-addition-subtraction': {
         title: 'Campuran Penjumlahan & Pengurangan',
         description: 'Soal campuran 3 bilangan dengan operator + dan -'
     },
-
     'double-addition-subtraction': {
         title: 'Penjumlahan dan Pengurangan Ganda',
         description: 'Gabungan operasi penjumlahan dan pengurangan ganda'
@@ -102,7 +100,6 @@ const modeConfigs = {
         title: 'Campuran Semua Operasi (Sulit)',
         description: 'Soal yang melibatkan +, -, ×, dan ÷. Wajib urutan operasi (PEMDAS/BODMAS).'
     }
-    
 };
 
 // ==================== 
@@ -134,19 +131,13 @@ function initializeEventListeners() {
     // Listener untuk Mode Selection
     document.querySelectorAll('.mode-card').forEach(card => {
         card.addEventListener('click', function() {
-            // ✅ Suara ditambahkan saat memilih mode
-            playSound(elements.soundMenuSelect); 
-            
+            playSound(elements.soundMenuSelect);
             const selectedMode = this.dataset.mode;
             showLevelSelection(selectedMode);
         });
     });
 
-    // Catatan: Jika ada event listeners lain (seperti level selection, reset game, dll.) 
-    // di dalam fungsi ini, pastikan Anda juga menambahkannya di sini.
-
-    // Contoh penambahan listener untuk Level Selection (jika ada):
-    /*
+    // Listener untuk Level Selection
     elements.levelGrid.addEventListener('click', function(event) {
         const levelCard = event.target.closest('.level-card');
         if (levelCard) {
@@ -155,7 +146,6 @@ function initializeEventListeners() {
             startGameWithLevel(level);
         }
     });
-    */
 }
 
 // FUNCTION: Initialize character and rope positions
@@ -188,18 +178,12 @@ function generateLevelCards() {
     for (let level = 1; level <= 10; level++) {
         const levelCard = document.createElement('div');
         levelCard.className = `level-card ${getDifficultyClass(level)}`;
+        levelCard.dataset.level = level;
         levelCard.innerHTML = `
             <div class="level-number">${level}</div>
             <div class="level-difficulty">${levelConfigs[level].difficulty}</div>
             <div class="level-range">Bilangan 1-${levelConfigs[level].maxNumber}</div>
         `;
-        
-        // MODIFIKASI: Tambahkan playSound() di sini
-        levelCard.addEventListener('click', () => {
-            // ✅ Panggil suara saat memilih level
-            playSound(elements.soundMenuSelect); 
-            startGameWithLevel(level);
-        });
         elements.levelGrid.appendChild(levelCard);
     }
 }
@@ -213,9 +197,7 @@ function getDifficultyClass(level) {
 
 // FUNCTION: Show main menu
 function showMainMenu() {
-    // ✅ Panggil suara saat berpindah/kembali ke menu utama
-    playSound(elements.soundMainMenu); 
-    
+    playSound(elements.soundMainMenu);
     hideAllModals();
     showModal(elements.mainMenu);
     initializePositions();
@@ -253,11 +235,8 @@ function showVictoryModal(winner) {
     
     victoryModal.className = `modal victory-modal ${playerColor}`;
     
-    // ✅ Panggil suara pemenang di sini
-    playSound(elements.soundPemenang); 
-    
+    playSound(elements.soundPemenang);
     showModal(victoryModal);
-    
     createConfetti();
 }
 
@@ -327,10 +306,10 @@ function initializeGame() {
     gameState.player2.hasAnswered = false;
     gameState.ropePosition = 0;
     gameState.gameActive = true;
-    gameState.timeLeft = 300; // Reset ke 5 menit
+    gameState.timeLeft = 300;
     
-    elements.scoreP1.textContent = '0';
-    elements.scoreP2.textContent = '0';
+    elements.arenaScoreP1.textContent = '0';
+    elements.arenaScoreP2.textContent = '0';
     elements.statusMessage.textContent = 'Jawab soal dengan benar untuk menarik tambang!';
     
     generateKeypads();
@@ -381,7 +360,6 @@ function endGameByTime() {
     } else if (gameState.player2.score > gameState.player1.score) {
         winner = 2;
     } else {
-        // Jika seri, tentukan berdasarkan rope position
         winner = gameState.ropePosition < 0 ? 1 : 2;
     }
     
@@ -438,18 +416,14 @@ function handleKeypadInput(player, key) {
     const answerDisplay = player === 1 ? elements.answerP1 : elements.answerP2;
     
     if (key === '←') {
-        // ✅ Suara saat tombol Backspace/Hapus diklik
-        playSound(elements.soundAngka); 
+        playSound(elements.soundAngka);
         playerState.answer = playerState.answer.slice(0, -1);
     } else if (key === '✓') {
-        // ✅ Suara saat tombol Konfirmasi diklik
-        playSound(elements.soundKonfirmasi); 
+        playSound(elements.soundKonfirmasi);
         checkAnswer(player);
         return;
     } else {
-        // ✅ Suara saat tombol Angka (0-9) diklik
-        playSound(elements.soundAngka); 
-        
+        playSound(elements.soundAngka);
         if (playerState.answer.length < 6) {
             playerState.answer += key;
         }
@@ -549,7 +523,7 @@ function generateMathProblem() {
                 problem = generateDivisionProblem(maxNumber);
             }
             break;
-       case 'all-mixed-operations':
+        case 'all-mixed-operations':
             problem = generateAllMixedOperationsProblem(maxNumber);
             break;
         default:
@@ -584,20 +558,14 @@ function generateAdditionProblem(maxNumber, numOperands) {
     };
 }
 
-// FUNCTION: Generate subtraction problem (Corrected to always be >= 0)
+// FUNCTION: Generate subtraction problem
 function generateSubtractionProblem(maxNumber, numOperands) {
     let numbers = [];
     let result = 0;
     let text = '';
 
     if (numOperands === 2) {
-        // KASUS 2 OPERAND: N1 - N2 (Pastikan N1 >= N2)
-        
-        // 1. Generate N2
         const num2 = Math.floor(Math.random() * maxNumber) + 1;
-        
-        // 2. Generate N1: N1 harus minimal sama dengan N2, dan maksimal maxNumber
-        // Rentang N1: [num2, maxNumber]
         const num1 = Math.floor(Math.random() * (maxNumber - num2 + 1)) + num2;
 
         numbers = [num1, num2];
@@ -605,23 +573,15 @@ function generateSubtractionProblem(maxNumber, numOperands) {
         text = `${num1} - ${num2}`;
 
     } else if (numOperands === 3) {
-        // KASUS 3 OPERAND: N1 - N2 - N3 (Pastikan N1 >= N2 + N3)
-        
-        // 1. Generate N2 dan N3
-        // Batasi N2 dan N3 agar N1 tidak selalu menjadi maxNumber
         const limit = Math.floor(maxNumber / 2) || maxNumber;
         const N2 = Math.floor(Math.random() * limit) + 1;
         const N3 = Math.floor(Math.random() * limit) + 1;
-        
         const N_sum = N2 + N3;
 
-        // 2. Generate N1 (Min: N_sum, Max: maxNumber)
         let N1;
         if (maxNumber <= N_sum) {
-            // Jika maxNumber terlalu kecil, N1 harus sama dengan N_sum
             N1 = N_sum;
         } else {
-            // N1 random antara N_sum dan maxNumber
             N1 = Math.floor(Math.random() * (maxNumber - N_sum + 1)) + N_sum;
         }
 
@@ -629,7 +589,6 @@ function generateSubtractionProblem(maxNumber, numOperands) {
         result = N1 - N2 - N3;
         text = `${N1} - ${N2} - ${N3}`;
     } else {
-        // Logika Fallback (menggunakan logika pengurutan lama jika numOperands != 2 atau 3)
         let resultCalc = 0;
         let textCalc = '';
         for (let i = 0; i < numOperands; i++) {
@@ -695,27 +654,13 @@ function generateDivisionProblem(maxNumber) {
     };
 }
 
-// FUNCTION: Generate mixed addition and subtraction problem (3 operands)
+// FUNCTION: Generate mixed addition and subtraction problem
 function generateMixedAdditionSubtractionProblem(maxNumber) {
     let result;
     let text;
     let numbers;
 
-    // Untuk memastikan hasil akhir non-negatif (>= 0)
-    // Kami akan menggunakan struktur yang menjamin hasil positif.
-    
-    // 1. Tentukan 3 bilangan
-    let num1 = Math.floor(Math.random() * maxNumber) + 1;
-    let num2 = Math.floor(Math.random() * maxNumber) + 1;
-    let num3 = Math.floor(Math.random() * maxNumber) + 1;
-    
-    // 2. Pilih salah satu dari dua pola soal campuran yang aman:
-    // Pola A: (N1 + N2) - N3, di mana N1+N2 > N3
-    // Pola B: (N1 - N2) + N3, di mana N1 > N2
-    
     if (Math.random() > 0.5) {
-        // Pola A: Penjumlahan-Pengurangan (N1 + N2 - N3)
-        // Pastikan N3 lebih kecil dari jumlah N1 dan N2
         num1 = Math.floor(Math.random() * (maxNumber - 10)) + 10; 
         num2 = Math.floor(Math.random() * (num1 / 2)) + 1;
         num3 = Math.floor(Math.random() * (num1 + num2 - 1)) + 1;
@@ -725,8 +670,6 @@ function generateMixedAdditionSubtractionProblem(maxNumber) {
         numbers = [num1, num2, num3];
         
     } else {
-        // Pola B: Pengurangan-Penjumlahan (N1 - N2 + N3)
-        // Pastikan N1 lebih besar dari N2
         num1 = Math.floor(Math.random() * maxNumber) + 1;
         num2 = Math.floor(Math.random() * num1) + 1; 
         num3 = Math.floor(Math.random() * maxNumber) + 1; 
@@ -744,18 +687,13 @@ function generateMixedAdditionSubtractionProblem(maxNumber) {
     };
 }
 
-// FUNCTION: Generate all mixed operations problem (5 operands, 4 unique operators)
+// FUNCTION: Generate all mixed operations problem
 function generateAllMixedOperationsProblem(maxNumber) {
-    let finalResult = -1; // Nilai awal < 0 untuk memaksa loop berjalan
+    let finalResult = -1;
     let problemDetails;
 
-    // Loop akan terus berjalan hingga menemukan soal yang valid (hasil >= 0 dan integer)
     while (finalResult < 0 || !Number.isInteger(finalResult)) {
-        
-        // Batasi operan M/D/A/S agar hasil tidak terlalu besar (misalnya, max 20)
-        const operandCap = Math.min(maxNumber, 20); 
-
-        // 1. Generate 5 Bilangan Acak
+        const operandCap = Math.min(maxNumber, 20);
         let N1 = Math.floor(Math.random() * operandCap) + 1;
         let N2 = Math.floor(Math.random() * operandCap) + 1;
         let N3 = Math.floor(Math.random() * operandCap) + 1;
@@ -765,20 +703,17 @@ function generateAllMixedOperationsProblem(maxNumber) {
         const numbers = [N1, N2, N3, N4, N5];
         let operators = ['+', '-', '×', '÷'];
         
-        // 2. Acak Urutan 4 Operator (+, -, ×, ÷)
         for (let i = operators.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [operators[i], operators[j]] = [operators[j], operators[i]];
         }
         
-        // 3. Buat Token Persamaan: [N1, Op1, N2, Op2, N3, Op3, N4, Op4, N5]
         let tokens = [numbers[0]];
         for (let i = 0; i < 4; i++) {
             tokens.push(operators[i]);
             tokens.push(numbers[i + 1]);
         }
         
-        // 4. Validasi Pembagian Bilangan Bulat (Wajib di awal)
         let hasNonIntegerDivision = false;
         for (let i = 1; i < tokens.length; i += 2) {
             if (tokens[i] === '÷' && tokens[i-1] % tokens[i+1] !== 0) {
@@ -788,15 +723,11 @@ function generateAllMixedOperationsProblem(maxNumber) {
         }
         
         if (hasNonIntegerDivision) {
-            continue; // Ulangi jika ada pembagian non-integer (misal 5 ÷ 2)
+            continue;
         }
 
-        // 5. Hitung Jawaban Menggunakan PEMDAS/BODMAS
-        
-        // Clone array untuk perhitungan (fase M/D akan memodifikasi array)
         let calcTokens = [...tokens];
 
-        // a. Fase 1: Perkalian dan Pembagian (M/D)
         for (let i = 1; i < calcTokens.length; i += 2) {
             const op = calcTokens[i];
             if (op === '×' || op === '÷') {
@@ -806,19 +737,15 @@ function generateAllMixedOperationsProblem(maxNumber) {
                 
                 if (op === '×') {
                     partialResult = N_left * N_right;
-                } else { // op === '÷'
-                    partialResult = N_left / N_right; 
+                } else {
+                    partialResult = N_left / N_right;
                 }
                 
-                // Ganti [N_k, Op, N_{k+1}] dengan [partialResult]
                 calcTokens.splice(i - 1, 3, partialResult);
-                
-                // Reset counter untuk memastikan array baru discan dari awal
-                i = -1; 
+                i = -1;
             }
         }
         
-        // b. Fase 2: Penjumlahan dan Pengurangan (A/S)
         finalResult = calcTokens[0];
         for (let i = 1; i < calcTokens.length; i += 2) {
             const op = calcTokens[i];
@@ -831,7 +758,6 @@ function generateAllMixedOperationsProblem(maxNumber) {
             }
         }
         
-        // 6. Jika valid (hasil >= 0 dan Integer), simpan detail dan keluar dari loop
         if (finalResult >= 0 && Number.isInteger(finalResult)) {
             let problemText = `${numbers[0]}`;
             for (let i = 0; i < 4; i++) {
@@ -843,7 +769,7 @@ function generateAllMixedOperationsProblem(maxNumber) {
                 text: problemText + ' = ?',
                 operation: 'all-mixed-operations'
             };
-            break; 
+            break;
         }
     }
 
@@ -854,17 +780,13 @@ function generateAllMixedOperationsProblem(maxNumber) {
 function checkAnswer(player) {
     if (!gameState.gameActive) return;
     
-    // Tentukan pemain dan lawan
     const playerState = player === 1 ? gameState.player1 : gameState.player2;
     const opponentState = player === 1 ? gameState.player2 : gameState.player1;
-    const opponentScoreElement = player === 1 ? elements.scoreP2 : elements.scoreP1;
     const answerDisplay = player === 1 ? elements.answerP1 : elements.answerP2;
     
     const playerAnswer = parseInt(playerState.answer);
     
-    // Periksa validitas input (tidak ada perubahan)
     if (isNaN(playerAnswer)) {
-        // ✅ TIDAK ADA FEEDBACK KOTAK UNTUK ERROR INPUT (hanya border)
         answerDisplay.style.borderColor = '#e74c3c';
         elements.statusMessage.textContent = 'Masukkan jawaban yang valid!';
         setTimeout(() => {
@@ -874,65 +796,46 @@ function checkAnswer(player) {
         return;
     }
     
-    // Tandai bahwa pemain sudah menjawab
     playerState.hasAnswered = true;
     
     if (playerAnswer === playerState.problem.answer) {
-        // KASUS 1: JAWABAN BENAR
-        // ✅ PANGGIL FEEDBACK HIJAU
-        showFeedback(player, true); 
-
+        showFeedback(player, true);
         answerDisplay.style.borderColor = '#27ae60';
         
-        // 1. Poin untuk pemain yang menjawab
         playerState.score++;
         
-        // 2. Pemain yang menjawab menarik tali (pergerakan ke arahnya)
         if (player === 1) {
-            // P1 Benar: Score P1 bertambah, Tali P1 menarik (-10)
-            elements.scoreP1.textContent = playerState.score;
+            elements.arenaScoreP1.textContent = playerState.score;
             gameState.ropePosition -= 10;
         } else {
-            // P2 Benar: Score P2 bertambah, Tali P2 menarik (+10)
-            elements.scoreP2.textContent = playerState.score;
+            elements.arenaScoreP2.textContent = playerState.score;
             gameState.ropePosition += 10;
         }
         
     } else {
-        // KASUS 2: JAWABAN SALAH
-        // ✅ PANGGIL FEEDBACK MERAH
-        showFeedback(player, false); 
-
+        showFeedback(player, false);
         answerDisplay.style.borderColor = '#e74c3c';
         
-        // 1. Poin untuk lawan (opponent)
         opponentState.score++;
         
-        // 2. Lawan menarik tali (pergerakan ke arah lawan)
         if (player === 1) {
-            // P1 Salah: Score P2 bertambah, Tali P2 menarik (+10)
-            opponentScoreElement.textContent = opponentState.score; // Update score lawan
+            elements.arenaScoreP2.textContent = opponentState.score;
             gameState.ropePosition += 10;
         } else {
-            // P2 Salah: Score P1 bertambah, Tali P1 menarik (-10)
-            opponentScoreElement.textContent = opponentState.score; // Update score lawan
+            elements.arenaScoreP1.textContent = opponentState.score;
             gameState.ropePosition -= 10;
         }
     }
     
-    // Perbarui posisi tali dan cek kemenangan
     updateRopePosition();
     checkVictory();
     
-    // Generate soal baru (Diberi delay 800ms agar feedback visual terlihat)
     setTimeout(() => {
         if (gameState.gameActive) {
             generateNewProblemForPlayer(player);
             answerDisplay.style.borderColor = '#bdc3c7';
         }
-    }, 800); 
-    // ✅ PENTING: Delay dinaikkan dari 0 menjadi 800ms (sesuai durasi feedback)
-    // Ini memastikan pemain tidak langsung mendapatkan soal baru sebelum feedback hilang.
+    }, 800);
 }
 
 // FUNCTION: Update rope position
@@ -945,7 +848,6 @@ function updateRopePosition() {
 
 // FUNCTION: Check for victory
 function checkVictory() {
-    // Logika 1: Menang jika selisih score 10
     const scoreDiff = Math.abs(gameState.player1.score - gameState.player2.score);
     if (scoreDiff >= 10) {
         const winner = gameState.player1.score > gameState.player2.score ? 1 : 2;
@@ -953,7 +855,6 @@ function checkVictory() {
         return;
     }
     
-    // Logika 2: Menang jika rope mencapai ujung
     if (gameState.ropePosition <= -gameState.maxRopeMove) {
         endGame(1);
     } else if (gameState.ropePosition >= gameState.maxRopeMove) {
@@ -981,6 +882,19 @@ function endGame(winner) {
 
 // FUNCTION: Reset the game
 function resetGame() {
+    gameState.player1.score = 0;
+    gameState.player2.score = 0;
+    gameState.player1.answer = '';
+    gameState.player2.answer = '';
+    gameState.player1.hasAnswered = false;
+    gameState.player2.hasAnswered = false;
+    gameState.ropePosition = 0;
+    
+    elements.arenaScoreP1.textContent = '0';
+    elements.arenaScoreP2.textContent = '0';
+    elements.answerP1.textContent = '';
+    elements.answerP2.textContent = '';
+    
     initializeGame();
 }
 
@@ -988,11 +902,10 @@ function resetGame() {
 // UI UTILITY FUNCTIONS
 // ====================
 
-// FUNCTION: Display temporary feedback (Correct/Wrong)
+// FUNCTION: Display temporary feedback
 function showFeedback(player, isCorrect) {
     const feedbackElement = player === 1 ? elements.feedbackP1 : elements.feedbackP2;
     
-    // 1. Atur teks dan warna
     if (isCorrect) {
         feedbackElement.textContent = 'BENAR';
         feedbackElement.classList.add('correct');
@@ -1003,13 +916,11 @@ function showFeedback(player, isCorrect) {
         feedbackElement.classList.remove('correct');
     }
     
-    // 2. Tampilkan kotak
     feedbackElement.classList.add('active');
     
-    // 3. Sembunyikan setelah 800ms (sesuai dengan delay animasi)
     setTimeout(() => {
         feedbackElement.classList.remove('active', 'correct', 'wrong');
-        feedbackElement.textContent = ''; 
+        feedbackElement.textContent = '';
     }, 800);
 }
 
@@ -1019,12 +930,10 @@ function showFeedback(player, isCorrect) {
 
 function playSound(audioElement) {
     if (audioElement) {
-        // Kloning elemen audio untuk memungkinkan pemutaran cepat dan berulang
         const soundClone = audioElement.cloneNode(true);
-        soundClone.currentTime = 0; 
+        soundClone.currentTime = 0;
         soundClone.play().catch(e => {
-            // Tangani error jika browser memblokir autoplay
-            // console.log("Gagal memutar audio:", e);
+            console.log("Gagal memutar audio:", e);
         });
     }
 }
