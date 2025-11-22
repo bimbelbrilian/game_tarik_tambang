@@ -1039,70 +1039,49 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .main-title {
-        font-size: 1.5em;
+    .game-area {
+        /* flex-direction: column; <--- BARIS INI DIHAPUS */
+        padding: 5px;
+        gap: 5px;
     }
-    
-    .fun-title {
-        font-size: 2em !important;
-    }
-    
-    .mode-grid {
-        grid-template-columns: repeat(3, 1fr);
-        max-width: 600px;
-        gap: 10px;
-    }
-    
-    .mode-card {
-        width: 130px;
-        height: 120px;
-        padding: 15px 10px;
-    }
-    
-    .mode-icon {
-        font-size: 2em;
-        margin-bottom: 8px;
-    }
-    
-    .mode-card h3 {
-        font-size: 0.8em;
-    }
-    
-    .level-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .keypad button {
-        padding: 6px;
-        font-size: 0.9em;
-        min-height: 35px;
-    }
-    
+
     .player-panel {
         padding: 10px;
     }
-    
-    .tug-of-war-illustration {
-        width: 85%;
-        height: 50px;
-    }
-    
-    .problem-display {
-        font-size: 1em;
-        min-height: 40px;
-    }
-    
-    .answer-display {
-        font-size: 1.2em;
-        height: 35px;
+
+    .tug-of-war-arena {
+        /* height: 200px; <--- BARIS INI DIHAPUS */
     }
 
-    footer {
-        padding: 12px 15px;
+    .tug-of-war-illustration {
+        width: 85%;
+        height: 50%;
+        max-width: none;
+    }
+
+    .keypad {
+        grid-template-columns: repeat(4, 1fr);
     }
     
+    .keypad button {
+        min-height: 35px;
+    }
+
+    .main-title {
+        font-size: 1.5em;
+    }
+
+    .fun-title {
+        font-size: 2em !important;
+    }
+
     .modal-content {
         padding: 25px 20px;
+    }
+
+    .back-button {
+        top: 10px;
+        left: 10px;
     }
 }
 
