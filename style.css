@@ -62,7 +62,8 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     overflow: hidden;
     margin: 5px;
-    height: 95vh;
+    /* PERBAIKAN 1: 100vh dikurangi total padding body (10px) dan margin container (10px) = 20px */
+    height: calc(100vh - 20px);
     display: flex;
     flex-direction: column;
 }
@@ -967,7 +968,8 @@ footer {
 /* ==================== */
 @media (max-width: 1024px) {
     .container {
-        height: 98vh;
+        /* PERBAIKAN 2: body padding 5px (10px vertikal) + container margin 2px (4px vertikal) = 14px */
+        height: calc(100vh - 14px);
         margin: 2px;
     }
     
@@ -1110,7 +1112,8 @@ footer {
     }
     
     .container {
-        height: 99vh;
+        /* PERBAIKAN 3: body padding 2px (4px vertikal) + container margin 1px (2px vertikal) = 6px */
+        height: calc(100vh - 6px);
         margin: 1px;
         border-radius: 10px;
     }
@@ -1327,3 +1330,4 @@ footer {
 .mode-card:nth-child(8) { animation-delay: 0.8s; }
 .mode-card:nth-child(9) { animation-delay: 0.9s; }
 .mode-card:nth-child(10) { animation-delay: 1.0s; }
+}
