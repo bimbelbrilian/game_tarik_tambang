@@ -99,17 +99,17 @@
     
     /* TIMER CONTAINER: POSISI MELAYANG, Z-INDEX, DAN KOMPAKSI */
     #timer-container {
-        /* POSISI: Terkunci di dalam Arena (relatif terhadap Arena/Center Panel) */
-        position: absolute;
-        z-index: 200; /* Pasti di atas ilustrasi vektor */
-        top: 5px; /* Posisikan sangat dekat dengan tepi atas Arena */
-        left: 50%;
-        transform: translateX(-50%);
+        /* FIX ULTIMATE DENGAN !IMPORTANT */
+        position: absolute !important;
+        z-index: 200 !important; /* Pasti di atas ilustrasi vektor */
+        top: 5px !important; /* Posisikan sangat dekat dengan tepi atas Arena */
+        left: 50% !important;
+        transform: translateX(-50%) !important;
 
         /* KOMPAKSI RUANG */
         min-height: auto; 
-        margin: 0; /* Hapus margin default */
-        padding: 3px 6px; /* Padding minimal */
+        margin: 0 !important; /* Hapus margin default */
+        padding: 3px 6px !important; /* Padding minimal */
         
         /* TAMPILAN KOMPAK */
         display: flex;
