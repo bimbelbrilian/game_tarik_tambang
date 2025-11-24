@@ -56,39 +56,65 @@
         gap: 8px;
         flex-direction: row;
     }
-
-    .player-panel, .center-panel {
+    
+    /* PLAYER PANELS */
+    .player-panel {
         padding: 10px;
-        border-radius: 12px;
-    }
-
-    /* TUG OF WAR ARENA FIXES */
-    .tug-of-war-arena {
-        position: relative; /* Wajib ada untuk posisi absolute Timer */
-        height: 100%;
-        /* Properti lain untuk Arena */
+        border-radius: 15px;
     }
     
-    /* TIMER COMPACT AND POSITIONING FIXES */
+    .player-title {
+        font-size: 0.9rem;
+        padding: 6px;
+        margin-bottom: 8px;
+    }
+    
+    .player-grid {
+        gap: 5px;
+        grid-template-columns: repeat(6, 1fr); 
+        grid-template-rows: repeat(5, 1fr);
+        padding: 4px;
+    }
+    
+    .tile {
+        font-size: 0.9rem;
+        border-radius: 8px;
+    }
+    
+    /* CENTER PANEL AND ARENA FIXES */
+    .center-panel {
+        width: 140px;
+        padding: 10px;
+        border-radius: 15px;
+    }
+
+    /* FIX KRUSIAL: Memastikan Arena menjadi konteks posisi */
+    .tug-of-war-arena {
+        position: relative; 
+        height: 100%;
+        width: 100%;
+    }
+    
+    /* FIX TIMER: Posisi Melayang dan Kompaksi */
     .timer-container {
-        /* POSISI ABSOLUTE DAN Z-INDEX TINGGI */
+        /* OVERRIDE gaya desktop dan membuatnya ringkas */
         position: absolute;
-        z-index: 200; /* Pasti di atas ilustrasi vektor */
-        top: 5px; /* Posisikan sangat dekat dengan tepi atas */
+        z-index: 200; /* Pastikan di atas ilustrasi vektor */
+        top: 5px; /* Posisikan sangat dekat dengan tepi atas Arena */
         left: 50%;
         transform: translateX(-50%);
 
-        /* MENGHEMAT RUANG */
-        min-height: auto; /* Hapus min-height yang memakan ruang */
-        margin: 0 !important; /* Hapus margin default */
-        padding: 3px 8px; /* Padding minimal */
+        /* HAPUS padding/margin besar yang memakan ruang */
+        min-height: auto; 
+        margin: 0; 
+        padding: 3px 6px; 
         
         /* TAMPILAN KOMPAK (ROW) */
         display: flex;
         flex-direction: row; 
         align-items: center;
         gap: 5px;
-        background: rgba(0, 0, 0, 0.7); /* Latar belakang untuk visibilitas */
+        background: rgba(0, 0, 0, 0.7); 
         border-radius: 5px;
     }
     
@@ -96,67 +122,31 @@
         display: none; /* Sembunyikan label 'Waktu' */
     }
     
-    .timer-display {
+    .timer-display, .timer {
         font-size: 1rem; /* Font lebih kecil */
+        padding: 0; /* Hapus padding pada timer element */
     }
 
-    /* ILLUSTRATION SIZE OPTIMIZATION (Memberi ruang vertikal) */
+    /* KURANGI TINGGI ILUSTRASI Vektor agar memberi ruang vertikal */
     .tug-of-war-illustration {
         height: 35%; /* Kurangi tinggi Ilustrasi */
-        top: 55%; /* Geser sedikit ke bawah untuk memberi ruang atas */
-    }
-
-    /* KEYPAD & GAME CONTROL COMPACTION */
-    .keypad {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 5px;
+        top: 55%; /* Geser sedikit ke bawah */
     }
     
-    .keypad button {
-        font-size: 0.9em;
-        padding: 5px;
-    }
-
-    .game-controls {
-        gap: 5px;
-    }
-
-    .game-controls .btn {
-        font-size: 0.8em;
-        padding: 6px 10px;
-    }
-
-    .center-panel .stats-bar {
-        gap: 5px;
-        padding: 5px;
-        border-radius: 10px;
+    /* SCORE CONTAINER (Old styles, kept for compatibility) */
+    .score-container {
+        min-height: 60px;
+        padding: 10px;
+        margin: 5px 0;
     }
     
-    .player-panel {
-        padding: 8px;
+    .score {
+        font-size: 1.5rem;
     }
     
-    .problem-display {
-        min-height: 30px;
-        font-size: 0.9em;
-        padding: 5px;
-        margin-bottom: 5px;
-    }
-    
-    .answer-display {
-        height: 30px;
-        font-size: 1.1em;
-        margin-bottom: 5px;
-    }
-    
-    .keypad button {
-        min-height: 25px;
-        padding: 4px;
-        font-size: 0.8em;
-    }
-
     footer {
-        padding: 8px 10px;
+        padding: 8px;
+        border-radius: 10px;
     }
 }
 
@@ -171,7 +161,7 @@
     }
 }
 
-/* Small Mobile Screens (Contoh: Lebar sangat kecil) */
+/* Small Mobile Screens */
 @media (max-width: 480px) and (orientation: landscape) {
     .container {
         height: 99vh;
