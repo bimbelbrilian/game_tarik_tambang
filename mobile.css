@@ -81,35 +81,37 @@
         border-radius: 8px;
     }
     
-    /* CENTER PANEL AND ARENA FIXES */
+    /* CENTER PANEL: JANGKAR POSISI KRUSIAL */
     .center-panel {
         width: 140px;
         padding: 10px;
         border-radius: 15px;
+        /* FIX KRUSIAL: Menjadi konteks posisi untuk Timer */
+        position: relative; 
     }
 
-    /* FIX KRUSIAL: Memastikan Arena menjadi konteks posisi */
+    /* TUG OF WAR ARENA: JANGKAR POSISI */
     .tug-of-war-arena {
         position: relative; 
         height: 100%;
         width: 100%;
     }
     
-    /* FIX TIMER: Posisi Melayang dan Kompaksi */
-    .timer-container {
-        /* OVERRIDE gaya desktop dan membuatnya ringkas */
+    /* TIMER CONTAINER: POSISI MELAYANG, Z-INDEX, DAN KOMPAKSI */
+    #timer-container {
+        /* POSISI: Terkunci di dalam Arena (relatif terhadap Arena/Center Panel) */
         position: absolute;
-        z-index: 200; /* Pastikan di atas ilustrasi vektor */
+        z-index: 200; /* Pasti di atas ilustrasi vektor */
         top: 5px; /* Posisikan sangat dekat dengan tepi atas Arena */
         left: 50%;
         transform: translateX(-50%);
 
-        /* HAPUS padding/margin besar yang memakan ruang */
+        /* KOMPAKSI RUANG */
         min-height: auto; 
-        margin: 0; 
-        padding: 3px 6px; 
+        margin: 0; /* Hapus margin default */
+        padding: 3px 6px; /* Padding minimal */
         
-        /* TAMPILAN KOMPAK (ROW) */
+        /* TAMPILAN KOMPAK */
         display: flex;
         flex-direction: row; 
         align-items: center;
@@ -118,22 +120,22 @@
         border-radius: 5px;
     }
     
-    .timer-label {
+    #timer-label {
         display: none; /* Sembunyikan label 'Waktu' */
     }
     
-    .timer-display, .timer {
+    #timer {
         font-size: 1rem; /* Font lebih kecil */
-        padding: 0; /* Hapus padding pada timer element */
+        padding: 0; 
     }
-
-    /* KURANGI TINGGI ILUSTRASI Vektor agar memberi ruang vertikal */
+    
+    /* ILLUSTRATION OPTIMIZATION */
     .tug-of-war-illustration {
         height: 35%; /* Kurangi tinggi Ilustrasi */
         top: 55%; /* Geser sedikit ke bawah */
     }
-    
-    /* SCORE CONTAINER (Old styles, kept for compatibility) */
+
+    /* SCORE CONTAINER */
     .score-container {
         min-height: 60px;
         padding: 10px;
@@ -195,5 +197,5 @@
 .tile.is-hidden {
     visibility: hidden;
     pointer-events: none; /* Mencegah kartu yang tersembunyi dapat diklik */
-    /* opacity: 0; */ /* Boleh ditambahkan jika Anda ingin transisi saat kartu menghilang */
+    /* opacity: 0; */ 
 }
