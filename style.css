@@ -304,37 +304,7 @@ header::before {
     box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
 }
 
-/* ==================== */
-/* TIMER STYLES */
-/* ==================== */
-.timer-container {
-    text-align: center;
-    margin: 5px 0;
-    padding: 10px;
-    background: linear-gradient(135deg, #2c3e50, #34495e);
-    border-radius: 10px;
-    color: white;
-    flex-shrink: 0;
-}
 
-.timer-display {
-    font-size: 1.8em;
-    font-weight: bold;
-    font-family: 'Courier New', monospace;
-    color: #f39c12;
-    text-shadow: 0 0 8px rgba(243, 156, 18, 0.5);
-}
-
-.timer-label {
-    font-size: 0.9em;
-    margin-bottom: 3px;
-    color: #ecf0f1;
-}
-
-.timer-warning {
-    animation: pulse 1s infinite;
-    color: #e74c3c !important;
-}
 
 /* ==================== */
 /* KEYPAD STYLES */
@@ -398,6 +368,45 @@ header::before {
 /* ==================== */
 /* TUG OF WAR ELEMENTS */
 /* ==================== */
+
+.timer-container {
+    position: absolute;
+    text-align: center;
+    margin: 5px 0;
+    padding: 10px;
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    border-radius: 10px;
+    color: white;
+    flex-shrink: 0;
+    z-index: 5;
+    top: 15px; 
+    bottom: auto; 
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid #FFFFFF;
+}
+
+.timer-display {
+    font-size: 1.8em;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    color: #f39c12;
+    text-shadow: 0 0 8px rgba(243, 156, 18, 0.5);
+}
+
+.timer-label {
+    font-size: 0.9em;
+    margin-bottom: 3px;
+    color: #ecf0f1;
+}
+
+.timer-warning {
+    animation: pulse 1s infinite;
+    color: #e74c3c !important;
+}
+
 .center-line {
     position: absolute;
     left: 50%;
@@ -406,7 +415,7 @@ header::before {
     width: 2px;
     background: rgba(255,255,255,0.5);
     transform: translateX(-50%);
-    z-index: 1;
+    z-index: 2;
 }
 
 .tug-of-war-illustration {
@@ -418,7 +427,7 @@ header::before {
     height: 45%;
     transform: translate(-50%, -50%);
     transition: transform 0.3s ease;
-    z-index: 2;
+    z-index: 3;
 }
 
 .tug-of-war-svg {
@@ -460,7 +469,7 @@ header::before {
     transform: translateX(-50%);
     display: flex;
     gap: 40px;
-    z-index: 3;
+    z-index: 4;
     background: rgba(255, 255, 255, 0.9);
     padding: 8px 20px;
     border-radius: 20px;
