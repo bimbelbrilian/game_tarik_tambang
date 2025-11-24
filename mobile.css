@@ -22,7 +22,7 @@
     }
 }
 
-/* Mobile Landscape */
+/* Mobile Landscape (Untuk perangkat dengan tinggi terbatas, e.g., max-height: 600px) */
 @media (max-height: 600px) and (orientation: landscape) {
     body {
         padding: 5px;
@@ -56,60 +56,107 @@
         gap: 8px;
         flex-direction: row;
     }
+
+    .player-panel, .center-panel {
+        padding: 10px;
+        border-radius: 12px;
+    }
+
+    /* TUG OF WAR ARENA FIXES */
+    .tug-of-war-arena {
+        position: relative; /* Wajib ada untuk posisi absolute Timer */
+        height: 100%;
+        /* Properti lain untuk Arena */
+    }
+    
+    /* TIMER COMPACT AND POSITIONING FIXES */
+    .timer-container {
+        /* POSISI ABSOLUTE DAN Z-INDEX TINGGI */
+        position: absolute;
+        z-index: 200; /* Pasti di atas ilustrasi vektor */
+        top: 5px; /* Posisikan sangat dekat dengan tepi atas */
+        left: 50%;
+        transform: translateX(-50%);
+
+        /* MENGHEMAT RUANG */
+        min-height: auto; /* Hapus min-height yang memakan ruang */
+        margin: 0 !important; /* Hapus margin default */
+        padding: 3px 8px; /* Padding minimal */
+        
+        /* TAMPILAN KOMPAK (ROW) */
+        display: flex;
+        flex-direction: row; 
+        align-items: center;
+        gap: 5px;
+        background: rgba(0, 0, 0, 0.7); /* Latar belakang untuk visibilitas */
+        border-radius: 5px;
+    }
+    
+    .timer-label {
+        display: none; /* Sembunyikan label 'Waktu' */
+    }
+    
+    .timer-display {
+        font-size: 1rem; /* Font lebih kecil */
+    }
+
+    /* ILLUSTRATION SIZE OPTIMIZATION (Memberi ruang vertikal) */
+    .tug-of-war-illustration {
+        height: 35%; /* Kurangi tinggi Ilustrasi */
+        top: 55%; /* Geser sedikit ke bawah untuk memberi ruang atas */
+    }
+
+    /* KEYPAD & GAME CONTROL COMPACTION */
+    .keypad {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+    }
+    
+    .keypad button {
+        font-size: 0.9em;
+        padding: 5px;
+    }
+
+    .game-controls {
+        gap: 5px;
+    }
+
+    .game-controls .btn {
+        font-size: 0.8em;
+        padding: 6px 10px;
+    }
+
+    .center-panel .stats-bar {
+        gap: 5px;
+        padding: 5px;
+        border-radius: 10px;
+    }
     
     .player-panel {
-        padding: 10px;
-        border-radius: 15px;
+        padding: 8px;
     }
     
-    .player-title {
-        font-size: 0.9rem;
-        padding: 6px;
-        margin-bottom: 8px;
+    .problem-display {
+        min-height: 30px;
+        font-size: 0.9em;
+        padding: 5px;
+        margin-bottom: 5px;
     }
     
-    .player-grid {
-        gap: 5px;
-        grid-template-columns: repeat(6, 1fr); 
-        grid-template-rows: repeat(5, 1fr);
+    .answer-display {
+        height: 30px;
+        font-size: 1.1em;
+        margin-bottom: 5px;
+    }
+    
+    .keypad button {
+        min-height: 25px;
         padding: 4px;
+        font-size: 0.8em;
     }
-    
-    .tile {
-        font-size: 0.9rem;
-        border-radius: 8px;
-    }
-    
-    .center-panel {
-        width: 140px;
-        padding: 10px;
-        border-radius: 15px;
-    }
-    
-    .timer-container {
-        min-height: 60px;
-        padding: 8px;
-        margin: 4px 0;
-    }
-    
-    .timer {
-        font-size: 1.2rem;
-        padding: 4px 8px;
-    }
-    
-    .score-container {
-        min-height: 60px;
-        padding: 10px;
-        margin: 5px 0;
-    }
-    
-    .score {
-        font-size: 1.5rem;
-    }
-    
+
     footer {
-        padding: 8px;
-        border-radius: 10px;
+        padding: 8px 10px;
     }
 }
 
@@ -124,7 +171,7 @@
     }
 }
 
-/* Small Mobile Screens */
+/* Small Mobile Screens (Contoh: Lebar sangat kecil) */
 @media (max-width: 480px) and (orientation: landscape) {
     .container {
         height: 99vh;
