@@ -370,26 +370,26 @@ header::before {
 /* ==================== */
 
 /* ==================== */
-/* TIMER CONTAINER - POSISI LEBIH ATAS */
+/* TIMER CONTAINER - FIXED POSITION */
 /* ==================== */
 .timer-container {
     position: absolute;
-    top: 10px; /* Dinaikkan lebih dekat ke atas */
+    top: 10px; /* jarak dari header */
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    padding: 6px 12px;
+    padding: 8px 15px;
     background: linear-gradient(135deg, #2c3e50, #34495e);
-    border-radius: 15px;
+    border-radius: 20px;
     color: white;
-    z-index: 100;
+    z-index: 100; /* Pastikan di atas elemen lain */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     border: 2px solid #FFFFFF;
-    min-width: 130px;
+    min-width: 140px;
 }
 
 .timer-display {
-    font-size: 1.4em;
+    font-size: 1.5em;
     font-weight: bold;
     font-family: 'Courier New', monospace;
     color: #f39c12;
@@ -397,8 +397,8 @@ header::before {
 }
 
 .timer-label {
-    font-size: 0.75em;
-    margin-bottom: 1px;
+    font-size: 0.8em;
+    margin-bottom: 2px;
     color: #ecf0f1;
 }
 
