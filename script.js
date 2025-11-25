@@ -806,10 +806,10 @@ function checkAnswer(player) {
         
         if (player === 1) {
             elements.arenaScoreP1.textContent = playerState.score;
-            gameState.ropePosition -= 10;
+            gameState.ropePosition -= 5;
         } else {
             elements.arenaScoreP2.textContent = playerState.score;
-            gameState.ropePosition += 10;
+            gameState.ropePosition += 5;
         }
         
     } else {
@@ -820,10 +820,10 @@ function checkAnswer(player) {
         
         if (player === 1) {
             elements.arenaScoreP2.textContent = opponentState.score;
-            gameState.ropePosition += 10;
+            gameState.ropePosition += 5;
         } else {
             elements.arenaScoreP1.textContent = opponentState.score;
-            gameState.ropePosition -= 10;
+            gameState.ropePosition -= 5;
         }
     }
     
