@@ -235,13 +235,25 @@ function showVictoryModal(winner) {
     
     victoryModal.className = `modal victory-modal ${playerColor}`;
     
+    // Pastikan modal tidak aktif sebelum menampilkan
+    victoryModal.classList.remove('active');
+    
     playSound(elements.soundPemenang);
-    showModal(victoryModal);
-    createConfetti();
+    
+    // Gunakan timeout kecil untuk memastikan DOM update
+    setTimeout(() => {
+        showModal(victoryModal);
+        createConfetti();
+    }, 10);
 }
 
 // FUNCTION: Close victory modal
 function closeVictoryModal() {
+    // Hapus semua confetti yang tersisa
+    const modalContent = elements.victoryModal.querySelector('.modal-content');
+    const confettiElements = modalContent.querySelectorAll('.confetti');
+    confettiElements.forEach(confetti => confetti.remove());
+    
     hideModal(elements.victoryModal);
     resetGame();
 }
@@ -250,6 +262,10 @@ function closeVictoryModal() {
 function createConfetti() {
     const modalContent = elements.victoryModal.querySelector('.modal-content');
     const colors = ['#f39c12', '#e74c3c', '#3498db', '#27ae60', '#9b59b6'];
+    
+    // Hapus confetti lama jika ada
+    const oldConfetti = modalContent.querySelectorAll('.confetti');
+    oldConfetti.forEach(confetti => confetti.remove());
     
     for (let i = 0; i < 50; i++) {
         const confetti = document.createElement('div');
@@ -263,7 +279,9 @@ function createConfetti() {
         modalContent.appendChild(confetti);
         
         setTimeout(() => {
-            confetti.remove();
+            if (confetti.parentNode) {
+                confetti.remove();
+            }
         }, 5000);
     }
 }
@@ -365,6 +383,12 @@ function endGameByTime() {
     
     elements.statusMessage.textContent = `Waktu habis! ${winner === 1 ? 'Pemain 1' : 'Pemain 2'} menang dengan skor lebih tinggi!`;
     elements.statusMessage.style.color = winner === 1 ? '#3498db' : '#e74c3c';
+    
+    // Hentikan timer
+    if (gameState.gameTimer) {
+        clearInterval(gameState.gameTimer);
+        gameState.gameTimer = null;
+    }
     
     setTimeout(() => {
         showVictoryModal(winner);
@@ -865,7 +889,12 @@ function checkVictory() {
 // FUNCTION: End the game
 function endGame(winner) {
     gameState.gameActive = false;
-    clearInterval(gameState.gameTimer);
+    
+    // Hentikan timer dengan benar
+    if (gameState.gameTimer) {
+        clearInterval(gameState.gameTimer);
+        gameState.gameTimer = null;
+    }
     
     if (winner === 1) {
         elements.statusMessage.textContent = 'Pemain 1 Menang!';
@@ -875,13 +904,21 @@ function endGame(winner) {
         elements.statusMessage.style.color = '#e74c3c';
     }
     
+    // Gunakan timeout yang lebih panjang untuk memastikan state sudah reset
     setTimeout(() => {
         showVictoryModal(winner);
-    }, 1000);
+    }, 1500);
 }
 
 // FUNCTION: Reset the game
 function resetGame() {
+    // Hentikan timer game
+    if (gameState.gameTimer) {
+        clearInterval(gameState.gameTimer);
+        gameState.gameTimer = null;
+    }
+    
+    // Reset state game
     gameState.player1.score = 0;
     gameState.player2.score = 0;
     gameState.player1.answer = '';
@@ -889,13 +926,28 @@ function resetGame() {
     gameState.player1.hasAnswered = false;
     gameState.player2.hasAnswered = false;
     gameState.ropePosition = 0;
+    gameState.gameActive = false;
     
+    // Reset UI
     elements.arenaScoreP1.textContent = '0';
     elements.arenaScoreP2.textContent = '0';
     elements.answerP1.textContent = '';
     elements.answerP2.textContent = '';
+    elements.statusMessage.textContent = 'Jawab soal dengan benar untuk menarik tambang!';
+    elements.statusMessage.style.color = '#2c3e50';
     
-    initializeGame();
+    // Reset border colors
+    elements.answerP1.style.borderColor = '#bdc3c7';
+    elements.answerP2.style.borderColor = '#bdc3c7';
+    
+    // Reset timer display
+    elements.gameTimer.textContent = '05:00';
+    elements.gameTimer.classList.remove('timer-warning');
+    
+    // Tunggu sebentar sebelum memulai game baru
+    setTimeout(() => {
+        initializeGame();
+    }, 100);
 }
 
 // ==================== 
