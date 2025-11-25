@@ -369,27 +369,27 @@ header::before {
 /* TUG OF WAR ELEMENTS */
 /* ==================== */
 
+/* ==================== */
+/* TIMER CONTAINER - POSISI LEBIH ATAS */
+/* ==================== */
 .timer-container {
     position: absolute;
-    text-align: center;
-    margin: 5px 0;
-    padding: 10px;
-    background: linear-gradient(135deg, #2c3e50, #34495e);
-    border-radius: 10px;
-    color: white;
-    flex-shrink: 0;
-    z-index: 5;
-    top: 15px; 
-    bottom: auto; 
+    top: 10px; /* Dinaikkan lebih dekat ke atas */
     left: 50%;
     transform: translateX(-50%);
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 6px 12px;
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    border-radius: 15px;
+    color: white;
+    z-index: 100;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     border: 2px solid #FFFFFF;
+    min-width: 130px;
 }
 
 .timer-display {
-    font-size: 1.8em;
+    font-size: 1.4em;
     font-weight: bold;
     font-family: 'Courier New', monospace;
     color: #f39c12;
@@ -397,8 +397,8 @@ header::before {
 }
 
 .timer-label {
-    font-size: 0.9em;
-    margin-bottom: 3px;
+    font-size: 0.75em;
+    margin-bottom: 1px;
     color: #ecf0f1;
 }
 
