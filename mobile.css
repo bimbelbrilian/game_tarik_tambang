@@ -4,6 +4,42 @@
 @media (max-width: 768px) {
     .orientation-warning {
         display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 20000;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .orientation-warning i {
+        font-size: 4rem;
+        margin-bottom: 20px;
+        color: #FFD700;
+        animation: rotate 2s infinite linear;
+    }
+
+    @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    .orientation-warning h2 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+
+    .orientation-warning p {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        max-width: 80%;
     }
     
     .container, .main-menu, .winner-popup {
@@ -19,135 +55,241 @@
         .container, .main-menu:not(.hidden), .winner-popup.active {
             display: flex;
         }
+        
+        /* ✅ OPTIMIZATION: Container full width untuk mobile */
+        .container {
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            border-radius: 0;
+            height: 100vh;
+        }
+        
+        /* ✅ OPTIMIZATION: Game area lebih optimal */
+        .game-area {
+            gap: 5px;
+            padding: 5px;
+        }
+        
+        /* ✅ OPTIMIZATION: Player panel lebih kompak */
+        .player-panel {
+            min-width: unset;
+            max-width: unset;
+            padding: 8px;
+        }
+        
+        /* ✅ OPTIMIZATION: Tug of war arena lebih proporsional */
+        .tug-of-war-arena {
+            min-width: unset;
+            flex: 1.5;
+        }
+
+        /* ✅ OPTIMIZATION: Header lebih kompak */
+        header {
+            padding: 8px 12px;
+            border-radius: 0;
+        }
+
+        .main-title {
+            font-size: 1.5rem;
+        }
+
+        .sub-title {
+            font-size: 0.8rem;
+        }
+
+        /* ✅ OPTIMIZATION: Problem display lebih kecil */
+        .problem-display {
+            font-size: 1rem;
+            padding: 8px;
+            min-height: 40px;
+        }
+
+        /* ✅ OPTIMIZATION: Answer display lebih kecil */
+        .answer-display {
+            height: 35px;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        /* ✅ OPTIMIZATION: Keypad lebih kompak */
+        .keypad {
+            gap: 3px;
+        }
+
+        .keypad button {
+            padding: 6px;
+            font-size: 0.9rem;
+            min-height: 35px;
+        }
+
+        /* ✅ OPTIMIZATION: Player header lebih kecil */
+        .player-header {
+            padding: 6px;
+            font-size: 0.9rem;
+            margin: -8px -8px 8px -8px;
+        }
     }
 }
 
 /* Mobile Landscape (Untuk perangkat dengan tinggi terbatas, e.g., max-height: 600px) */
 @media (max-height: 600px) and (orientation: landscape) {
     body {
-        padding: 5px;
+        padding: 0;
         justify-content: flex-start;
         min-height: auto;
         height: 100vh;
     }
     
     .container {
-        height: 98vh;
-        gap: 8px;
+        height: 100vh;
+        gap: 5px;
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
     }
     
     header {
-        padding: 10px 15px;
-        border-radius: 15px;
+        padding: 8px 12px;
+        border-radius: 0;
     }
     
     h1 {
-        font-size: 1.3rem;
-        margin-bottom: 5px;
+        font-size: 1.2rem;
+        margin-bottom: 3px;
     }
     
     .subtitle {
-        font-size: 0.8rem;
-        padding: 4px 10px;
-        margin-bottom: 5px;
+        font-size: 0.7rem;
+        padding: 3px 8px;
+        margin-bottom: 3px;
     }
     
     .game-area {
-        gap: 8px;
+        gap: 5px;
         flex-direction: row;
+        padding: 5px;
     }
     
     /* PLAYER PANELS */
     .player-panel {
-        padding: 10px;
-        border-radius: 15px;
+        padding: 8px;
+        border-radius: 8px;
+        min-width: unset;
+        max-width: unset;
     }
     
     .player-title {
-        font-size: 0.9rem;
-        padding: 6px;
-        margin-bottom: 8px;
+        font-size: 0.8rem;
+        padding: 4px;
+        margin-bottom: 6px;
     }
     
     .player-grid {
-        gap: 5px;
+        gap: 3px;
         grid-template-columns: repeat(6, 1fr); 
         grid-template-rows: repeat(5, 1fr);
-        padding: 4px;
+        padding: 3px;
     }
     
     .tile {
-        font-size: 0.9rem;
-        border-radius: 8px;
+        font-size: 0.8rem;
+        border-radius: 6px;
     }
     
-    /* CENTER PANEL: JANGKAR POSISI KRUSIAL */
+    /* CENTER PANEL */
     .center-panel {
-        width: 140px;
-        padding: 10px;
-        border-radius: 15px;
-        /* FIX KRUSIAL: Menjadi konteks posisi untuk Timer */
+        width: 120px;
+        padding: 8px;
+        border-radius: 8px;
         position: relative; 
     }
 
-    /* TUG OF WAR ARENA: JANGKAR POSISI */
+    /* TUG OF WAR ARENA */
     .tug-of-war-arena {
         position: relative; 
         height: 100%;
         width: 100%;
+        min-width: unset;
+        flex: 1.5;
     }
     
-    /* TIMER CONTAINER MOBILE - POSISI LEBIH ATAS */
-@media (max-height: 600px) and (orientation: landscape) {
+    /* TIMER CONTAINER */
     .timer-container {
         position: absolute !important;
-        top: 5px !important; /* Lebih dekat ke atas di mobile */
+        top: 5px !important;
         left: 50% !important;
         transform: translateX(-50%) !important;
         z-index: 200 !important;
         margin: 0 !important;
-        padding: 4px 8px !important;
+        padding: 3px 6px !important;
         min-height: auto;
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 5px;
+        gap: 3px;
         background: rgba(0, 0, 0, 0.9);
-        border-radius: 8px;
-        min-width: 120px;
+        border-radius: 6px;
+        min-width: 110px;
     }
     
     .timer-label {
         display: inline !important;
-        font-size: 0.7em;
+        font-size: 0.6em;
         margin-bottom: 0;
     }
     
     .timer-display {
-        font-size: 0.9em;
+        font-size: 0.8em;
     }
-}
     
     /* ILLUSTRATION OPTIMIZATION */
     .tug-of-war-illustration {
-        height: 35%; /* Kurangi tinggi Ilustrasi */
-        top: 55%; /* Geser sedikit ke bawah */
+        height: 30%;
+        top: 50%;
     }
 
-    /* SCORE CONTAINER */
-    .score-container {
-        min-height: 60px;
-        padding: 10px;
-        margin: 5px 0;
+    /* SCORE DISPLAY */
+    .arena-score-display {
+        padding: 6px 15px;
+        gap: 30px;
+        bottom: 10px;
     }
-    
-    .score {
-        font-size: 1.5rem;
+
+    .score-value {
+        font-size: 1.2rem;
+        padding: 1px 6px;
+    }
+
+    .score-label {
+        font-size: 0.8rem;
+    }
+
+    /* GAME CONTROLS */
+    .game-controls {
+        padding: 10px;
+        margin: 5px;
+    }
+
+    #status-message {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
     }
     
     footer {
-        padding: 8px;
-        border-radius: 10px;
+        padding: 6px;
+        border-radius: 0;
+    }
+
+    .social-links a {
+        padding: 4px 8px;
+        font-size: 0.7rem;
     }
 }
 
@@ -165,36 +307,255 @@
 /* Small Mobile Screens */
 @media (max-width: 480px) and (orientation: landscape) {
     .container {
-        height: 99vh;
+        height: 100vh;
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
     }
     
     header {
-        padding: 15px;
+        padding: 10px;
+        border-radius: 0;
     }
     
     .player-panel {
-        padding: 12px;
+        padding: 6px;
+        min-width: unset;
+        max-width: unset;
     }
     
     .center-panel {
-        padding: 10px;
+        padding: 6px;
+        width: 100px;
     }
     
     .player-grid {
-        gap: 5px;
+        gap: 2px;
         grid-template-columns: repeat(6, 1fr); 
         grid-template-rows: repeat(5, 1fr);
-        padding: 4px;
+        padding: 2px;
     }
     
     .tile {
-        font-size: clamp(0.8rem, 2vw, 1.1rem);
+        font-size: clamp(0.7rem, 2vw, 1rem);
+    }
+    
+    /* Optimasi tambahan untuk very small mobile */
+    .game-area {
+        gap: 3px;
+        padding: 3px;
+    }
+    
+    .problem-display {
+        font-size: 0.9rem;
+        padding: 8px;
+        min-height: 40px;
+    }
+
+    .answer-display {
+        height: 30px;
+        font-size: 1rem;
+    }
+    
+    .keypad button {
+        padding: 6px;
+        font-size: 0.9rem;
+        min-height: 35px;
+    }
+
+    .player-header {
+        padding: 4px;
+        font-size: 0.8rem;
+        margin: -6px -6px 6px -6px;
+    }
+
+    .timer-container {
+        padding: 2px 4px !important;
+        min-width: 100px;
+    }
+
+    .timer-display {
+        font-size: 0.7em;
+    }
+
+    .arena-score-display {
+        padding: 4px 12px;
+        gap: 25px;
+    }
+
+    .score-value {
+        font-size: 1.1rem;
+    }
+}
+
+/* Very Small Mobile Screens */
+@media (max-width: 360px) and (orientation: landscape) {
+    .container {
+        height: 100vh;
+    }
+    
+    .player-panel {
+        padding: 4px;
+    }
+    
+    .center-panel {
+        width: 90px;
+        padding: 4px;
+    }
+    
+    .player-title {
+        font-size: 0.7rem;
+        padding: 3px;
+    }
+    
+    .tile {
+        font-size: 0.7rem;
+    }
+    
+    .problem-display {
+        font-size: 0.8rem;
+        padding: 6px;
+        min-height: 35px;
+    }
+
+    .answer-display {
+        height: 28px;
+        font-size: 0.9rem;
+    }
+    
+    .keypad button {
+        padding: 4px;
+        font-size: 0.8rem;
+        min-height: 30px;
+    }
+
+    .player-header {
+        font-size: 0.7rem;
+        padding: 3px;
+    }
+
+    .timer-container {
+        min-width: 90px;
+        padding: 1px 3px !important;
+    }
+
+    .timer-label {
+        font-size: 0.5em;
+    }
+
+    .timer-display {
+        font-size: 0.6em;
+    }
+
+    .arena-score-display {
+        padding: 3px 10px;
+        gap: 20px;
+        bottom: 5px;
+    }
+
+    .score-value {
+        font-size: 1rem;
+    }
+
+    .score-label {
+        font-size: 0.7rem;
+    }
+
+    .game-controls {
+        padding: 8px;
+        margin: 3px;
+    }
+
+    #status-message {
+        font-size: 0.8rem;
+    }
+
+    .btn {
+        padding: 5px 10px;
+        font-size: 0.7rem;
+    }
+
+    footer {
+        padding: 4px;
+    }
+
+    .social-links a {
+        padding: 3px 6px;
+        font-size: 0.6rem;
+    }
+}
+
+/* Tablet Landscape */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+    .container {
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .game-area {
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .player-panel {
+        min-width: 280px;
+        max-width: 350px;
+    }
+
+    .tug-of-war-arena {
+        min-width: 400px;
+        flex: 2;
     }
 }
 
 /* Untuk menyembunyikan kartu yang cocok tanpa mengubah tata letak */
 .tile.is-hidden {
     visibility: hidden;
-    pointer-events: none; /* Mencegah kartu yang tersembunyi dapat diklik */
-    /* opacity: 0; */ 
+    pointer-events: none;
+}
+
+/* ✅ FIX UNTUK POPUP PEMENANG DI MOBILE */
+@media (max-width: 768px) {
+    .winner-popup.active {
+        display: flex !important;
+        z-index: 10000 !important;
+    }
+
+    .winner-content {
+        max-width: 90vw;
+        max-height: 80vh;
+        padding: 20px;
+        margin: 10px;
+    }
+
+    .winner-title {
+        font-size: 1.5rem;
+    }
+
+    .winner-message {
+        font-size: 2rem;
+    }
+
+    .winner-scores {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .player-score {
+        min-width: 120px;
+        padding: 15px;
+    }
+
+    .player-score-value {
+        font-size: 2rem;
+    }
+
+    .popup-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+    }
 }
