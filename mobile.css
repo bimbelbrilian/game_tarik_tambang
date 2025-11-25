@@ -97,37 +97,36 @@
         width: 100%;
     }
     
-    /* TIMER CONTAINER: POSISI MELAYANG, Z-INDEX, DAN KOMPAKSI */
-    #timer-container {
-        /* FIX ULTIMATE DENGAN !IMPORTANT */
+    /* TIMER CONTAINER MOBILE - POSISI LEBIH ATAS */
+@media (max-height: 600px) and (orientation: landscape) {
+    .timer-container {
         position: absolute !important;
-        z-index: 200 !important; /* Pasti di atas ilustrasi vektor */
-        top: 5px !important; /* Posisikan sangat dekat dengan tepi atas Arena */
+        top: 5px !important; /* Lebih dekat ke atas di mobile */
         left: 50% !important;
         transform: translateX(-50%) !important;
-
-        /* KOMPAKSI RUANG */
-        min-height: auto; 
-        margin: 0 !important; /* Hapus margin default */
-        padding: 3px 6px !important; /* Padding minimal */
-        
-        /* TAMPILAN KOMPAK */
+        z-index: 200 !important;
+        margin: 0 !important;
+        padding: 4px 8px !important;
+        min-height: auto;
         display: flex;
-        flex-direction: row; 
+        flex-direction: row;
         align-items: center;
         gap: 5px;
-        background: rgba(0, 0, 0, 0.7); 
-        border-radius: 5px;
+        background: rgba(0, 0, 0, 0.9);
+        border-radius: 8px;
+        min-width: 120px;
     }
     
-    #timer-label {
-        display: none; /* Sembunyikan label 'Waktu' */
+    .timer-label {
+        display: inline !important;
+        font-size: 0.7em;
+        margin-bottom: 0;
     }
     
-    #timer {
-        font-size: 1rem; /* Font lebih kecil */
-        padding: 0; 
+    .timer-display {
+        font-size: 0.9em;
     }
+}
     
     /* ILLUSTRATION OPTIMIZATION */
     .tug-of-war-illustration {
