@@ -213,6 +213,67 @@ header::before {
 }
 
 /* ==================== */
+/* GAME CONTAINER LAYOUT */
+/* ==================== */
+
+/* ==================== */
+/* GAME CONTAINER FIX */
+/* ==================== */
+#game-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+#game-container.hidden {
+    display: none;
+}
+
+/* Pastikan game area memenuhi container */
+#game-container .game-area {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* Player panels harus expand */
+#game-container .player-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* Keypad harus memenuhi sisa ruang */
+#game-container .keypad {
+    flex: 1;
+    min-height: 0;
+}
+
+/* Tug of war arena proporsional */
+#game-container .tug-of-war-arena {
+    flex: 2;
+    min-height: 0;
+}
+
+/* Elemen dengan tinggi tetap */
+#game-container .player-header,
+#game-container .problem-display,
+#game-container .answer-display,
+#game-container .feedback-box {
+    flex-shrink: 0;
+}
+
+/* Game controls tetap di bawah */
+#game-container .game-controls {
+    flex-shrink: 0;
+}
+
+
+/* ==================== */
 /* GAME AREA LAYOUT - FLEXIBLE */
 /* ==================== */
 .game-area {
@@ -315,8 +376,8 @@ header::before {
 .answer-display {
     width: 100%;
     height: 40px;
-    min-height: 40px; /* TAMBAHKAN ini */
-    max-height: 40px; /* TAMBAHKAN ini */
+    min-height: 40px; 
+    max-height: 40px;
     border: 2px solid #bdc3c7;
     border-radius: 6px;
     margin-bottom: 10px;
@@ -608,7 +669,7 @@ header::before {
 .modal h2 {
     color: #2c3e50;
     margin-bottom: 8px;
-    font-size: 1.8em;
+    font-size: 2.5em;
     background: linear-gradient(135deg, #2c3e50, #3498db);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -628,6 +689,7 @@ header::before {
     background: linear-gradient(135deg, #fff, #f8f9fa);
     border: 2px solid;
     animation: victoryPulse 2s infinite;
+    padding: 40px 30px;
 }
 
 .victory-modal.player1 .modal-content {
@@ -645,8 +707,8 @@ header::before {
 }
 
 .victory-icon {
-    font-size: 3em;
-    margin-bottom: 15px;
+    font-size: 5em;
+    margin-bottom: 20px;
     animation: bounce 1s infinite;
 }
 
