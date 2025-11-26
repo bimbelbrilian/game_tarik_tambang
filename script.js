@@ -334,7 +334,7 @@ function initializeGame() {
     generateNewProblems();
     startGameTimer();
     
-    elements.gameContainer.style.display = 'block';
+    elements.gameContainer.classList.remove('hidden');
     updateRopePosition();
 }
 
@@ -943,6 +943,9 @@ function resetGame() {
     // Reset timer display
     elements.gameTimer.textContent = '05:00';
     elements.gameTimer.classList.remove('timer-warning');
+
+    // PERBAIKAN: Sembunyikan game container sementara
+    elements.gameContainer.classList.add('hidden');
     
     // Tunggu sebentar sebelum memulai game baru
     setTimeout(() => {
