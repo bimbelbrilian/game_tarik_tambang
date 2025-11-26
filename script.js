@@ -290,8 +290,9 @@ function createConfetti() {
 // GAME FLOW FUNCTIONS
 // ====================
 
-// FUNCTION: Start game with selected level
+// FUNCTION: Start game with selected level - VERSI LENGKAP
 function startGameWithLevel(level) {
+    console.log('Starting game with level:', level);
     gameState.level = level;
     hideModal(elements.levelMenu);
     startCountdown();
@@ -315,7 +316,11 @@ function startCountdown() {
 }
 
 // FUNCTION: Initialize the game
+// FUNCTION: Initialize the game - VERSI LENGKAP
 function initializeGame() {
+    console.log('Initializing game...');
+    
+    // Reset game state
     gameState.player1.score = 0;
     gameState.player2.score = 0;
     gameState.player1.answer = '';
@@ -326,16 +331,42 @@ function initializeGame() {
     gameState.gameActive = true;
     gameState.timeLeft = 300;
     
+    // Reset UI elements
     elements.arenaScoreP1.textContent = '0';
     elements.arenaScoreP2.textContent = '0';
     elements.statusMessage.textContent = 'Jawab soal dengan benar untuk menarik tambang!';
+    elements.statusMessage.style.color = '#2c3e50';
     
+    // Clear answer displays
+    elements.answerP1.textContent = '';
+    elements.answerP2.textContent = '';
+    elements.answerP1.style.borderColor = '#bdc3c7';
+    elements.answerP2.style.borderColor = '#bdc3c7';
+    
+    // Clear feedback
+    elements.feedbackP1.textContent = '';
+    elements.feedbackP2.textContent = '';
+    elements.feedbackP1.className = 'feedback-box';
+    elements.feedbackP2.className = 'feedback-box';
+    
+    // Reset timer display
+    elements.gameTimer.textContent = '05:00';
+    elements.gameTimer.classList.remove('timer-warning');
+    
+    // Generate game content
     generateKeypads();
     generateNewProblems();
-    startGameTimer();
     
+    // Tampilkan game container dengan benar
+    hideAllModals();
     elements.gameContainer.classList.remove('hidden');
+    elements.gameContainer.style.display = 'flex';
+    
+    // Start game components
+    startGameTimer();
     updateRopePosition();
+    
+    console.log('Game initialized successfully');
 }
 
 // FUNCTION: Start game timer
@@ -910,15 +941,17 @@ function endGame(winner) {
     }, 1500);
 }
 
-// FUNCTION: Reset the game
+// FUNCTION: Reset the game - VERSI LENGKAP
 function resetGame() {
+    console.log('Resetting game...');
+    
     // Hentikan timer game
     if (gameState.gameTimer) {
         clearInterval(gameState.gameTimer);
         gameState.gameTimer = null;
     }
     
-    // Reset state game
+    // Reset semua state
     gameState.player1.score = 0;
     gameState.player2.score = 0;
     gameState.player1.answer = '';
@@ -944,13 +977,38 @@ function resetGame() {
     elements.gameTimer.textContent = '05:00';
     elements.gameTimer.classList.remove('timer-warning');
 
-    // PERBAIKAN: Sembunyikan game container sementara
-    elements.gameContainer.classList.add('hidden');
+    // Clear feedback
+    elements.feedbackP1.textContent = '';
+    elements.feedbackP2.textContent = '';
     
-    // Tunggu sebentar sebelum memulai game baru
-    setTimeout(() => {
-        initializeGame();
-    }, 100);
+    // Sembunyikan victory modal jika aktif
+    hideModal(elements.victoryModal);
+    
+    // Mulai game baru
+    initializeGame();
+}
+
+// FUNCTION: Debug game state - VERSI LENGKAP
+function debugGameState() {
+    console.log('=== GAME STATE DEBUG ===');
+    console.log('Game Active:', gameState.gameActive);
+    console.log('Game Container Visible:', !elements.gameContainer.classList.contains('hidden'));
+    console.log('Game Container Display:', window.getComputedStyle(elements.gameContainer).display);
+    console.log('Player 1 Score:', gameState.player1.score);
+    console.log('Player 2 Score:', gameState.player2.score);
+    console.log('Rope Position:', gameState.ropePosition);
+    console.log('Time Left:', gameState.timeLeft);
+    console.log('Game Timer:', gameState.gameTimer);
+    
+    // Check if keypads are generated
+    const keypad1Buttons = elements.keypadP1.querySelectorAll('button');
+    const keypad2Buttons = elements.keypadP2.querySelectorAll('button');
+    console.log('Keypad 1 buttons:', keypad1Buttons.length);
+    console.log('Keypad 2 buttons:', keypad2Buttons.length);
+    
+    // Check if problems are generated
+    console.log('Player 1 Problem:', elements.problemP1.textContent);
+    console.log('Player 2 Problem:', elements.problemP2.textContent);
 }
 
 // ==================== 
