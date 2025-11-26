@@ -414,7 +414,7 @@ header::before {
 
 .keypad button {
     padding: 8px;
-    font-size: 1em;
+    font-size: 2em;
     border: none;
     border-radius: 6px;
     background: #34495e;
