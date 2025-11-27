@@ -1,11 +1,11 @@
 /* ==================== */
-/* MOBILE STYLES */
+/* MOBILE STYLES - TARIK TAMBANG */
 /* ==================== */
 
-@media (max-width: 768px) {
-    /* ==================== */
-    /* BASE MOBILE STYLES */
-    /* ==================== */
+/* ==================== */
+/* PORTRAIT MOBILE STYLES */
+/* ==================== */
+@media (max-width: 768px) and (orientation: portrait) {
     body {
         padding: 2px;
         height: 100vh;
@@ -18,9 +18,7 @@
         border-radius: 10px;
     }
 
-    /* ==================== */
-    /* HEADER MOBILE STYLES */
-    /* ==================== */
+    /* HEADER PORTRAIT */
     header {
         padding: 10px 15px;
     }
@@ -34,9 +32,7 @@
         font-size: 0.8em;
     }
 
-    /* ==================== */
-    /* GAME AREA MOBILE LAYOUT */
-    /* ==================== */
+    /* GAME AREA PORTRAIT */
     .game-area {
         flex-direction: column;
         padding: 5px;
@@ -46,7 +42,7 @@
         flex: 1;
     }
 
-    /* Player Panel Mobile */
+    /* PLAYER PANEL PORTRAIT */
     .player-panel {
         min-width: 100%;
         max-width: 100%;
@@ -67,14 +63,12 @@
         font-size: 1em;
     }
 
-    /* ==================== */
-    /* TUG OF WAR ARENA MOBILE */
-    /* ==================== */
+    /* TUG OF WAR ARENA PORTRAIT */
     .tug-of-war-arena {
         min-width: 100%;
         height: 25vh;
         min-height: 150px;
-        order: -1; /* Letakkan di atas player panels */
+        order: -1;
         margin-bottom: 5px;
     }
 
@@ -83,9 +77,7 @@
         width: 95%;
     }
 
-    /* ==================== */
-    /* TIMER MOBILE STYLES */
-    /* ==================== */
+    /* TIMER PORTRAIT */
     .timer-container {
         top: 5px;
         padding: 5px 10px;
@@ -100,9 +92,7 @@
         font-size: 0.7em;
     }
 
-    /* ==================== */
-    /* ARENA SCORE MOBILE */
-    /* ==================== */
+    /* ARENA SCORE PORTRAIT */
     .arena-score-display {
         bottom: 8px;
         padding: 5px 15px;
@@ -118,9 +108,7 @@
         font-size: 0.8em;
     }
 
-    /* ==================== */
-    /* PROBLEM & ANSWER MOBILE */
-    /* ==================== */
+    /* PROBLEM & ANSWER PORTRAIT */
     .problem-display {
         padding: 8px;
         font-size: 1em;
@@ -137,9 +125,7 @@
         margin-bottom: 8px;
     }
 
-    /* ==================== */
-    /* KEYPAD MOBILE STYLES */
-    /* ==================== */
+    /* KEYPAD PORTRAIT */
     .keypad {
         gap: 4px;
         flex: 1;
@@ -152,9 +138,7 @@
         min-height: 35px;
     }
 
-    /* ==================== */
-    /* FEEDBACK MOBILE STYLES */
-    /* ==================== */
+    /* FEEDBACK PORTRAIT */
     .feedback-box {
         height: 30px;
         min-height: 30px;
@@ -164,9 +148,262 @@
         margin: 3px 0;
     }
 
-    /* ==================== */
-    /* MODAL MOBILE STYLES */
-    /* ==================== */
+    /* FOOTER PORTRAIT */
+    footer {
+        padding: 8px 15px;
+    }
+
+    /* ORIENTATION WARNING */
+    .orientation-warning {
+        display: flex !important;
+    }
+    
+    .container, .main-menu {
+        display: none !important;
+    }
+}
+
+/* ==================== */
+/* LANDSCAPE MOBILE STYLES - OPTIMIZED */
+/* ==================== */
+@media (max-width: 768px) and (orientation: landscape) {
+    /* BODY & CONTAINER */
+    body {
+        padding: 2px !important;
+        height: 100vh !important;
+        overflow: hidden !important;
+    }
+
+    .container {
+        height: 98vh !important;
+        min-height: 98vh !important;
+        max-height: 98vh !important;
+        margin: 2px !important;
+        gap: 4px !important;
+        padding: 3px !important;
+        border-radius: 10px !important;
+    }
+
+    /* HEADER OPTIMIZATION */
+    header {
+        padding: 6px 8px !important;
+        min-height: 40px !important;
+        max-height: 50px !important;
+    }
+    
+    .main-title {
+        font-size: 1rem !important;
+        margin-bottom: 1px !important;
+        line-height: 1.2 !important;
+    }
+    
+    .sub-title {
+        font-size: 0.65rem !important;
+        line-height: 1.1 !important;
+    }
+    
+    /* FOOTER OPTIMIZATION */
+    footer {
+        padding: 4px 8px !important;
+        min-height: 30px !important;
+        max-height: 40px !important;
+    }
+    
+    /* GAME AREA - LANDSCAPE LAYOUT */
+    .game-area {
+        flex: 1 !important;
+        flex-direction: row !important;
+        min-height: 0 !important;
+        gap: 6px !important;
+        padding: 2px !important;
+        height: calc(100% - 80px) !important;
+    }
+    
+    /* PLAYER PANEL - LANDSCAPE OPTIMIZED */
+    .player-panel {
+        flex: 1 !important;
+        min-height: auto !important;
+        max-height: none !important;
+        height: 100% !important;
+        min-width: auto !important;
+        max-width: none !important;
+        margin-bottom: 0 !important;
+        padding: 6px !important;
+    }
+
+    .player-panel:last-child {
+        margin-bottom: 0 !important;
+    }
+
+    .player-header {
+        margin: -6px -6px 8px -6px !important;
+        padding: 6px !important;
+        font-size: 0.9em !important;
+    }
+    
+    /* TUG OF WAR ARENA - LANDSCAPE OPTIMIZED */
+    .tug-of-war-arena {
+        order: 0 !important;
+        flex: 0.7 !important;
+        min-height: auto !important;
+        height: 100% !important;
+        margin-bottom: 0 !important;
+        padding: 5px !important;
+    }
+
+    .tug-of-war-illustration {
+        height: 70% !important;
+        width: 90% !important;
+    }
+    
+    /* TIMER LANDSCAPE */
+    .timer-container {
+        top: 3px !important;
+        padding: 4px 8px !important;
+        min-width: 100px !important;
+    }
+
+    .timer-display {
+        font-size: 1.1em !important;
+    }
+
+    .timer-label {
+        font-size: 0.65em !important;
+    }
+
+    /* ARENA SCORE LANDSCAPE */
+    .arena-score-display {
+        bottom: 5px !important;
+        padding: 4px 12px !important;
+        gap: 25px !important;
+    }
+
+    .score-value {
+        font-size: 1.1em !important;
+        min-width: 20px !important;
+    }
+
+    .score-label {
+        font-size: 0.7em !important;
+    }
+
+    /* PROBLEM & ANSWER OPTIMIZED */
+    .problem-display {
+        min-height: 35px !important;
+        max-height: 35px !important;
+        padding: 4px !important;
+        font-size: 0.9em !important;
+        margin-bottom: 6px !important;
+    }
+    
+    .answer-display {
+        min-height: 30px !important;
+        max-height: 30px !important;
+        font-size: 1em !important;
+        margin-bottom: 6px !important;
+    }
+    
+    /* KEYPAD OPTIMIZED */
+    .keypad {
+        gap: 3px !important;
+        flex: 1 !important;
+        min-height: 0 !important;
+    }
+    
+    .keypad button {
+        padding: 3px !important;
+        font-size: 0.8em !important;
+        min-height: 25px !important;
+    }
+
+    /* FEEDBACK OPTIMIZED */
+    .feedback-box {
+        height: 25px !important;
+        min-height: 25px !important;
+        max-height: 25px !important;
+        line-height: 25px !important;
+        font-size: 0.9em !important;
+        margin: 2px 0 !important;
+    }
+
+    /* ORIENTATION HANDLING */
+    .orientation-warning {
+        display: none !important;
+    }
+    
+    .container, .main-menu:not(.hidden) {
+        display: flex !important;
+    }
+}
+
+/* ==================== */
+/* SMALL MOBILE STYLES */
+/* ==================== */
+@media (max-width: 480px) and (orientation: portrait) {
+    .container {
+        height: 99vh;
+        margin: 1px;
+    }
+
+    .main-title {
+        font-size: 1.2em;
+    }
+
+    .sub-title {
+        font-size: 0.75em;
+    }
+
+    .player-panel {
+        min-height: 180px;
+        max-height: 30vh;
+    }
+
+    .tug-of-war-arena {
+        height: 20vh;
+        min-height: 120px;
+    }
+
+    .keypad button {
+        padding: 4px;
+        font-size: 0.8em;
+        min-height: 30px;
+    }
+}
+
+@media (max-width: 480px) and (orientation: landscape) {
+    .container {
+        height: 99vh !important;
+        margin: 1px !important;
+    }
+
+    .main-title {
+        font-size: 0.9rem !important;
+    }
+    
+    .sub-title {
+        font-size: 0.6rem !important;
+    }
+
+    .game-area {
+        gap: 4px !important;
+        height: calc(100% - 70px) !important;
+    }
+
+    .player-panel {
+        padding: 4px !important;
+    }
+
+    .keypad button {
+        padding: 2px !important;
+        font-size: 0.75em !important;
+        min-height: 22px !important;
+    }
+}
+
+/* ==================== */
+/* MODAL & MENU STYLES */
+/* ==================== */
+@media (max-width: 768px) {
     .modal {
         padding: 5px;
     }
@@ -191,9 +428,7 @@
         margin-bottom: 15px;
     }
 
-    /* ==================== */
-    /* MODE GRID MOBILE */
-    /* ==================== */
+    /* MODE GRID */
     .mode-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
@@ -217,9 +452,7 @@
         line-height: 1.3;
     }
 
-    /* ==================== */
-    /* LEVEL GRID MOBILE */
-    /* ==================== */
+    /* LEVEL GRID */
     .level-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 6px;
@@ -242,18 +475,14 @@
         font-size: 0.6em;
     }
 
-    /* ==================== */
-    /* BUTTON MOBILE STYLES */
-    /* ==================== */
+    /* BUTTONS */
     .btn {
         padding: 7px 12px;
         font-size: 0.85em;
         margin: 2px;
     }
 
-    /* ==================== */
-    /* GAME CONTROLS MOBILE */
-    /* ==================== */
+    /* GAME CONTROLS */
     .game-controls {
         margin: 5px;
         padding: 10px;
@@ -264,13 +493,7 @@
         margin-bottom: 10px;
     }
 
-    /* ==================== */
-    /* FOOTER MOBILE STYLES */
-    /* ==================== */
-    footer {
-        padding: 8px 15px;
-    }
-
+    /* SOCIAL LINKS */
     .social-links {
         gap: 10px;
     }
@@ -280,16 +503,12 @@
         font-size: 0.8em;
     }
 
-    /* ==================== */
-    /* COUNTDOWN MOBILE */
-    /* ==================== */
+    /* COUNTDOWN */
     #countdown {
         font-size: 20vw;
     }
 
-    /* ==================== */
-    /* VICTORY MODAL MOBILE */
-    /* ==================== */
+    /* VICTORY MODAL */
     .victory-icon {
         font-size: 2.5em;
         margin-bottom: 10px;
@@ -297,125 +516,37 @@
 }
 
 /* ==================== */
-/* SMALL MOBILE STYLES */
-/* ==================== */
-@media (max-width: 480px) {
-    .container {
-        height: 99vh;
-        margin: 1px;
-    }
-
-    .main-title {
-        font-size: 1.2em;
-    }
-
-    .sub-title {
-        font-size: 0.75em;
-    }
-
-    .mode-grid {
-        grid-template-columns: 1fr;
-        gap: 8px;
-    }
-
-    .mode-card {
-        width: 100%;
-        max-width: 200px;
-        height: 100px;
-        min-height: 100px;
-    }
-
-    .level-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .player-panel {
-        min-height: 180px;
-        max-height: 30vh;
-    }
-
-    .tug-of-war-arena {
-        height: 20vh;
-        min-height: 120px;
-    }
-
-    .keypad button {
-        padding: 4px;
-        font-size: 0.8em;
-        min-height: 30px;
-    }
-
-    .social-links {
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .social-links a {
-        justify-content: center;
-    }
-}
-
-/* ==================== */
-/* LANDSCAPE MOBILE STYLES */
-/* ==================== */
-@media (max-width: 768px) and (orientation: landscape) {
-    .game-area {
-        flex-direction: row;
-        height: 100%;
-    }
-
-    .player-panel {
-        min-height: 150px;
-        max-height: none;
-        height: 100%;
-    }
-
-    .tug-of-war-arena {
-        height: 100%;
-        min-height: auto;
-        order: 0;
-        margin-bottom: 0;
-    }
-
-    .mode-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .modal-content {
-        max-height: 85vh;
-        overflow-y: auto;
-    }
-}
-
-/* ==================== */
 /* HEIGHT-BASED ADJUSTMENTS */
 /* ==================== */
-@media (max-height: 600px) {
+@media (max-height: 600px) and (orientation: landscape) {
     .player-panel {
-        min-height: 150px;
-        max-height: 45vh;
+        min-height: 140px !important;
+        max-height: 40vh !important;
     }
 
     .tug-of-war-arena {
-        height: 20vh;
+        flex: 0.6 !important;
     }
 
     .keypad button {
-        min-height: 30px;
-        padding: 4px;
+        min-height: 22px !important;
+        padding: 2px !important;
     }
 
-    .problem-display,
+    .problem-display {
+        min-height: 30px !important;
+        max-height: 30px !important;
+    }
+    
     .answer-display {
-        min-height: 35px;
-        max-height: 35px;
+        min-height: 25px !important;
+        max-height: 25px !important;
     }
 }
 
 /* ==================== */
-/* MOBILE GAME CONTAINER FIX */
+/* GAME CONTAINER FIX */
 /* ==================== */
-
 @media (max-width: 768px) {
     #game-container {
         flex: 1;
@@ -427,31 +558,5 @@
     
     #game-container.hidden {
         display: none;
-    }
-    
-    /* Pastikan game area mobile layout benar */
-    #game-container .game-area {
-        flex: 1;
-        min-height: 0;
-        overflow: hidden;
-    }
-    
-    /* Player panels mobile */
-    #game-container .player-panel {
-        flex: 1;
-        min-height: 0;
-    }
-}
-
-/* Landscape mobile */
-@media (max-width: 768px) and (orientation: landscape) {
-    #game-container .game-area {
-        flex: 1;
-        min-height: 0;
-    }
-    
-    #game-container .player-panel {
-        flex: 1;
-        min-height: 0;
     }
 }
